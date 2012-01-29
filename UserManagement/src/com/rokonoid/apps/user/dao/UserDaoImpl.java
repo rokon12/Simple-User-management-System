@@ -168,7 +168,7 @@ public class UserDaoImpl implements UserDao {
 	public Object getUserByHash(String hash) {
 		return (User) sessionFactory.getCurrentSession()
 				.createCriteria(User.class).add(Restrictions.eq("deleted", 1))
-				.add(Restrictions.eq("resethash", hash)).list().get(0);
+				.add(Restrictions.eq("resetHash", hash)).list().get(0);
 
 	}
 
@@ -178,7 +178,7 @@ public class UserDaoImpl implements UserDao {
 		if (u instanceof User) {
 			User us = (User) u;
 			us.setPassword(pass);
-			us.setResethash("");
+			us.setResetHash("");
 			updateUser(us);
 			return new Long(-8);
 		} else {
