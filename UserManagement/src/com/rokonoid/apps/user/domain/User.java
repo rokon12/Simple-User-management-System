@@ -60,6 +60,10 @@ public class User implements Serializable {
 	private Date startTime;
 	@Column(name = "updateTime")
 	private Date updateTime;
+	@Column(name = "resethash")
+	private String resethash;
+	@Column(name = "activatehash")
+	private String activatehash;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "roleId", insertable = true, updatable = true)
@@ -248,7 +252,19 @@ public class User implements Serializable {
 		this.userlevel = userlevel;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public String getActivatehash() {
+		return activatehash;
+	}
+
+	public void setActivatehash(String activatehash) {
+		this.activatehash = activatehash;
+	}
+
+	public String getResethash() {
+		return resethash;
+	}
+
+	public void setResethash(String resethash) {
+		this.resethash = resethash;
 	}
 }

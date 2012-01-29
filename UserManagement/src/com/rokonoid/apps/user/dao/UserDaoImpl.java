@@ -149,31 +149,40 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User getUserByName(String login) {
+		return (User) sessionFactory.getCurrentSession()
+				.createCriteria(User.class)
+				.add(Restrictions.eq("username", login))
+				.add(Restrictions.eq("deleted", 1)).list().get(0);
 
-		return null;
 	}
 
 	@Override
 	public User getUserByEmail(String email) {
+		return (User) sessionFactory.getCurrentSession()
+				.createCriteria(User.class).add(Restrictions.eq("deleted", 1))
+				.add(Restrictions.eq("email", email)).list().get(0);
 
-		return null;
 	}
 
 	@Override
 	public Object getUserByHash(String hash) {
+		return (User) sessionFactory.getCurrentSession()
+				.createCriteria(User.class).add(Restrictions.eq("deleted", 1))
+				.add(Restrictions.eq("resethash", hash)).list().get(0);
 
-		return null;
 	}
 
 	@Override
 	public Object resetPassByHash(String hash, String pass) {
-
-		return null;
-	}
-
-	@Override
-	public Long selectMaxFromUsersWithSearch(String search) {
-
-		return null;
+		Object u = this.getUserByHash(hash);
+		if (u instanceof User) {
+			User us = (User) u;
+			us.setPassword(pass);
+			us.setResethash("");
+			updateUser(us);
+			return new Long(-8);
+		} else {
+			return u;
+		}
 	}
 }

@@ -29,5 +29,4 @@ public interface UserDao {
 
 	public Object resetPassByHash(String hash, String pass);
 
-	public Long selectMaxFromUsersWithSearch(String search);
 }
