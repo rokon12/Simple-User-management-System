@@ -11,21 +11,21 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "userLevel")
+@Table(name = "USER_LEVEL")
 public class UserLevel implements Serializable {
 
 	private static final long serialVersionUID = -300959618828188096L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "levelId")
+	@Column(name = "level_id")
 	private Long levelId;
 	@Column(name = "description")
 	private String description;
-	@Column(name = "statusCode")
+	@Column(name = "status_code")
 	private Integer statusCode;
-	@Column(name = "startTime")
+	@Column(name = "start_time")
 	private Date startTime;
-	@Column(name = "updateTime")
+	@Column(name = "update_time")
 	private Date updateTime;
 	@Column(name = "deleted")
 	private String deleted;

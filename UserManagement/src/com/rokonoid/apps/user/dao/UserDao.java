@@ -2,10 +2,15 @@ package com.rokonoid.apps.user.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.rokonoid.apps.user.domain.User;
 
+@Component
 public interface UserDao {
 	public User getUser(Long userId);
+
+	public void saveUser(User user);
 
 	public void updateUser(User user);
 

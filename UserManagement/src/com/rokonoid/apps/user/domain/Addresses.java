@@ -14,30 +14,30 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "addresses")
+@Table(name = "ADDRESS")
 public class Addresses implements Serializable {
 
 	private static final long serialVersionUID = -743210842440874098L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "addressesId")
+	@Column(name = "address_id")
 	private Long addressesId;
-	@Column(name = "additionalname")
+	@Column(name = "additional_name")
 	private String additionalName;
 	@Column(name = "comment_field")
 	private String comment;
 	@Column(name = "fax")
 	private String fax;
-	@Column(name = "starttime")
+	@Column(name = "start_time")
 	private Date startTime;
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "stateId")
+	@JoinColumn(name = "state_id")
 	private States states;
 	@Column(name = "street")
 	private String street;
 	@Column(name = "town")
 	private String town;
-	@Column(name = "updateTime")
+	@Column(name = "update_time")
 	private Date updateTime;
 	@Column(name = "zip")
 	private String zip;

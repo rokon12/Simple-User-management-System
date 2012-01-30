@@ -11,10 +11,14 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.rokonoid.apps.user.domain.Addresses;
 import com.rokonoid.apps.user.domain.User;
 
+@Transactional
+@Repository
 public class UserDaoImpl implements UserDao {
 
 	@Autowired
@@ -62,12 +66,6 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public Long selectMaxFromUsers() {
 		try {
-			// Query query = sessionFactory.getCurrentSession().createQuery(
-			// "select count(c.userId) from user c where c.deleted=0");
-
-			// List<Long> ll = query.list();
-			// return ll.get(0);
-
 			Criteria criteria = sessionFactory.getCurrentSession()
 					.createCriteria(User.class)
 					.setProjection(Projections.rowCount())
@@ -110,14 +108,6 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public User getAllUser(String search) {
 		String[] searchItems = search.split(" ");
-		// Criteria criteria =
-		// sessionFactory.getCurrentSession().createCriteria(
-		// User.class);
-		// for (int i = 0; i < searchItems.length; i++) {
-		// searchItems[i] = searchItems[i].toLowerCase();
-		// criteria.add(Restrictions.ilike("firstName", searchItems[i]));
-		// }
-
 		try {
 			String sqlQuery = "select * from  User u " + "WHERE u.deleted = 1";
 			for (int i = 0; i < searchItems.length; i++) {
@@ -183,6 +173,13 @@ public class UserDaoImpl implements UserDao {
 			return new Long(-8);
 		} else {
 			return u;
+		}
+	}
+
+	@Override
+	public void saveUser(User user) {
+		if (user != null) {
+			sessionFactory.getCurrentSession().save(user);
 		}
 	}
 }

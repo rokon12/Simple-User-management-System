@@ -10,22 +10,22 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "states")
+@Table(name = "STATE")
 public class States implements Serializable {
 
 	private static final long serialVersionUID = 8496854969087298806L;
 	@Id
 	@GeneratedValue
-	@Column(name = "stateId")
+	@Column(name = "state_id")
 	private Long stateId;
 	@Column(name = "name")
 	private String name;
-	@Column(name = "startTime")
+	@Column(name = "start_time")
 	private Date startTime;
-	@Column(name = "updateTime")
+	@Column(name = "update_time")
 	private Date updateTime;
 	@Column(name = "deleted")
-	private String deleted;
+	private boolean deleted;
 
 	public States() {
 		super();
@@ -63,11 +63,11 @@ public class States implements Serializable {
 		this.updateTime = updateTime;
 	}
 
-	public String getDeleted() {
+	public boolean getDeleted() {
 		return deleted;
 	}
 
-	public void setDeleted(String deleted) {
+	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
 	}
 

@@ -16,13 +16,13 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "user")
+@Table(name = "USER")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = -1662783070608204291L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "")
+	@Column(name = "user_id")
 	private Long userId;
 	@Column(name = "username")
 	private String username;
@@ -32,42 +32,41 @@ public class User implements Serializable {
 	private String passwordConfirmed;
 	@Column(name = "email")
 	private String email;
-	@Column(name = "firstName")
+	@Column(name = "first_name")
 	private String firstName;
-	@Column(name = "lastName")
+	@Column(name = "last_name")
 	private String lastName;
 	@Column(name = "active")
 	private boolean active;
 	@Column(name = "deleted")
 	private boolean deleted;
-	@Column(name = "regDate")
+	@Column(name = "reg_date")
 	private Date regDate;
 	@Column(name = "status")
 	private Integer status;
-	@Column(name = "languageId")
+	@Column(name = "language_id")
 	private Long languageId;
-	@Column(name = "resetHash")
+	@Column(name = "reset_hash")
 	private String resetHash;
-	@Column(name = "activateHash")
+	@Column(name = "activate_hash")
 	private String activateHash;
-	@Column(name = "lastlogin")
+	@Column(name = "last_login")
 	private Date lastLogin;
-	@Column(name = "levelId")
+	@Column(name = "level_id")
 	private Long levelId;
-	@Column(name = "pictureURI")
+	@Column(name = "picture_uri")
 	private String pictureURI;
-	@Column(name = "startTime")
+	@Column(name = "start_time")
 	private Date startTime;
-	@Column(name = "updateTime")
+	@Column(name = "update_time")
 	private Date updateTime;
-	
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "roleId", insertable = true, updatable = true)
+	@JoinColumn(name = "role_id", insertable = true, updatable = true)
 	private Role role;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "addressesId", insertable = true, updatable = true)
+	@JoinColumn(name = "addresses_id", insertable = true, updatable = true)
 	private Addresses addresses;
 
 	@Transient
