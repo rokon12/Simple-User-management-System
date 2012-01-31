@@ -22,9 +22,10 @@ public interface UserDao {
 
 	public List<User> getAllUsersDeleted();
 
-	public User getAllUser(String search);
+	public User getUserBySerachString(String search);
 
 	public boolean checkUserLogin(String DataValue);
+	public boolean checkUserLogin(String username, String password);
 
 	public User getUserByName(String login);
 

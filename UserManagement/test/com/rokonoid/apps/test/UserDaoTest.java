@@ -20,8 +20,8 @@ public class UserDaoTest extends AbstractTest {
 	@Test
 	public void setUserTest() {
 		User user = new User();
+		
 		user.setUsername("rokon");
-
 		user.setPassword(md5.createPassPhrase("rokon12"));
 		user.setDeleted(true);
 		user.setStartTime(new Date());

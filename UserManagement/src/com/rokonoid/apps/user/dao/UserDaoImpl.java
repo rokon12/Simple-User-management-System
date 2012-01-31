@@ -3,10 +3,8 @@ package com.rokonoid.apps.user.dao;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -30,6 +28,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public User getUser(Long userId) {
 		if (userId != null && userId > 0) {
+			log.debug("geUser() id: " + userId);
 			return (User) sessionFactory.getCurrentSession().get(User.class,
 					userId);
 		}
@@ -112,7 +111,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public User getAllUser(String search) {
+	public User getUserBySerachString(String search) {
 		// String[] searchItems = search.split(" ");
 		// try {
 		// String sqlQuery = "SELECT * FROM  USER u " + "WHERE u.deleted = 1 ";
@@ -193,7 +192,27 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void saveUser(User user) {
 		if (user != null) {
+			user.setStartTime(new Date());
+			user.setDeleted(false);
 			sessionFactory.getCurrentSession().save(user);
 		}
+	}
+
+	@Override
+	public boolean checkUserLogin(String username, String password) {
+		if ((username != null && !username.equals(""))
+				&& (password != null && !password.equals(""))) {
+
+			Criteria criteria = sessionFactory.getCurrentSession()
+					.createCriteria(User.class);
+			criteria.add(Restrictions.eq("username", username));
+			criteria.add(Restrictions.eq("password", password));
+
+			List list = criteria.list();
+			if (list.size() > 0) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
