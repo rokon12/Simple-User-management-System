@@ -5,7 +5,11 @@
 
 <hibernate-configuration>
 	<session-factory>
-		<!-- Database Connection settings -->
-		<property name="connection.driver_class"></property>
+		<mapping class="com.rokonoid.apps.user.domain.User" />
+		<mapping class="com.rokonoid.apps.user.domain.Addresses" />
+		<mapping class="com.rokonoid.apps.user.domain.Permission" />
+		<mapping class="com.rokonoid.apps.user.domain.States" />
+		<mapping class="com.rokonoid.apps.user.domain.Role" />
+		<mapping class="com.rokonoid.apps.user.domain.UserLevel" />
 	</session-factory>
 </hibernate-configuration>

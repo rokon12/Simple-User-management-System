@@ -9,18 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.rokonoid.apps.user.dao.UserDao;
 import com.rokonoid.apps.user.domain.User;
+import com.rokonoid.apps.util.crypt.MD5CryptImplementation;
 
 public class UserDaoTest extends AbstractTest {
 
 	@Autowired
 	private UserDao userDao;
+	private MD5CryptImplementation md5 = new MD5CryptImplementation();
 
 	@Test
 	public void setUserTest() {
 		User user = new User();
-		user.setUserId(new Long(1));
 		user.setUsername("rokon");
-		user.setPassword("rokon12");
+
+		user.setPassword(md5.createPassPhrase("rokon12"));
+		user.setDeleted(true);
 		user.setStartTime(new Date());
 
 		userDao.saveUser(user);
@@ -29,4 +32,7 @@ public class UserDaoTest extends AbstractTest {
 
 		assertNotNull(user1);
 	}
+
+	
+	
 }

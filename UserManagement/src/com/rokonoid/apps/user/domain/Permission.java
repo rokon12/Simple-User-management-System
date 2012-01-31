@@ -64,5 +64,4 @@ public class Permission {
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
 	}
-
 }

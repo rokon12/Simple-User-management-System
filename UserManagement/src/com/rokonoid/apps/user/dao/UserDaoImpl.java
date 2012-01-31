@@ -10,6 +10,8 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +22,7 @@ import com.rokonoid.apps.user.domain.User;
 @Transactional
 @Repository
 public class UserDaoImpl implements UserDao {
+	private final Logger log = LoggerFactory.getLogger(UserDaoImpl.class);
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -63,6 +66,7 @@ public class UserDaoImpl implements UserDao {
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Long selectMaxFromUsers() {
 		try {
@@ -80,6 +84,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public List<User> getAllUsers() {
 		try {
 			Criteria criteria = sessionFactory.getCurrentSession()
@@ -92,6 +97,7 @@ public class UserDaoImpl implements UserDao {
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> getAllUsersDeleted() {
 		try {
@@ -107,27 +113,35 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User getAllUser(String search) {
-		String[] searchItems = search.split(" ");
-		try {
-			String sqlQuery = "select * from  User u " + "WHERE u.deleted = 1";
-			for (int i = 0; i < searchItems.length; i++) {
-				sqlQuery += "( " + "lower(u.lastName) LIKE '"
-						+ StringUtils.lowerCase("%" + searchItems[i] + "%")
-						+ "' " + "OR lower(u.firstName) LIKE '"
-						+ StringUtils.lowerCase("%" + searchItems[i] + "%")
-						+ "' " + "OR lower(u.username) LIKE '"
-						+ StringUtils.lowerCase("%" + searchItems[i] + "%")
-						+ "' " + "OR lower(u.addresses.email) LIKE '"
-						+ StringUtils.lowerCase("%" + searchItems[i] + "%")
-						+ "' " + ") ";
-				sqlQuery += " )";
-			}
-			Query query = sessionFactory.getCurrentSession().createQuery(
-					sqlQuery);
-			return (User) query.list().get(0);
-		} catch (HibernateException e) {
-			e.printStackTrace();
-		}
+		// String[] searchItems = search.split(" ");
+		// try {
+		// String sqlQuery = "SELECT * FROM  USER u " + "WHERE u.deleted = 1 ";
+		// sqlQuery += "AND ( ";
+		// for (int i = 0; i < searchItems.length; i++) {
+		// if (i != 0) {
+		// sqlQuery += " OR ";
+		// }
+		// sqlQuery += "( " + "lower(u.last_name) LIKE '"
+		// + StringUtils.lowerCase("%" + searchItems[i] + "%")
+		// + "' " + "OR lower(u.first_name) LIKE '"
+		// + StringUtils.lowerCase("%" + searchItems[i] + "%")
+		// + "' " + "OR lower(u.username) LIKE '"
+		// + StringUtils.lowerCase("%" + searchItems[i] + "%")
+		// + "' " + ") ";
+		// }
+		// sqlQuery += " )";
+		//
+		// log.debug("sqlQuery : " + sqlQuery);
+		// Query query = sessionFactory.getCurrentSession().createSQLQuery(
+		// sqlQuery);
+		//
+		// if (query.list().size() > 0) {
+		// return (User) query.list().get(0);
+		// }
+		//
+		// } catch (HibernateException e) {
+		// e.printStackTrace();
+		// }
 		return null;
 	}
 

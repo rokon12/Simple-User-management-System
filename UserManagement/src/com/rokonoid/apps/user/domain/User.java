@@ -61,11 +61,11 @@ public class User implements Serializable {
 	@Column(name = "update_time")
 	private Date updateTime;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "role_id", insertable = true, updatable = true)
 	private Role role;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "addresses_id", insertable = true, updatable = true)
 	private Addresses addresses;
 
