@@ -88,7 +88,7 @@ public class UserDaoImpl implements UserDao {
 		try {
 			Criteria criteria = sessionFactory.getCurrentSession()
 					.createCriteria(User.class)
-					.add(Restrictions.eq("deleted", 1));
+					.add(Restrictions.eq("deleted", 0));
 			return criteria.list();
 		} catch (HibernateException e) {
 			e.printStackTrace();
@@ -155,14 +155,14 @@ public class UserDaoImpl implements UserDao {
 		return (User) sessionFactory.getCurrentSession()
 				.createCriteria(User.class)
 				.add(Restrictions.eq("username", login))
-				.add(Restrictions.eq("deleted", 1)).list().get(0);
+				.add(Restrictions.eq("deleted", 0)).list().get(0);
 
 	}
 
 	@Override
 	public User getUserByEmail(String email) {
 		return (User) sessionFactory.getCurrentSession()
-				.createCriteria(User.class).add(Restrictions.eq("deleted", 1))
+				.createCriteria(User.class).add(Restrictions.eq("deleted", 0))
 				.add(Restrictions.eq("email", email)).list().get(0);
 
 	}
@@ -170,7 +170,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public Object getUserByHash(String hash) {
 		return (User) sessionFactory.getCurrentSession()
-				.createCriteria(User.class).add(Restrictions.eq("deleted", 1))
+				.createCriteria(User.class).add(Restrictions.eq("deleted", 0))
 				.add(Restrictions.eq("resetHash", hash)).list().get(0);
 
 	}

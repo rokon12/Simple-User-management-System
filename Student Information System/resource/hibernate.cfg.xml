@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<mapping class="com.iit.univdhaka.iis.domain.User" />
+		<mapping class="com.iit.univdhaka.iis.domain.AcademicCareer" />
+		<mapping class="com.iit.univdhaka.iis.domain.Academy" />
+		<mapping class="com.iit.univdhaka.iis.domain.Course" />
+		<mapping class="com.iit.univdhaka.iis.domain.CourseCoordintor" />
+		<mapping class="com.iit.univdhaka.iis.domain.Degree" />
+		<mapping class="com.iit.univdhaka.iis.domain.DomainObject" />
+		<mapping class="com.iit.univdhaka.iis.domain.LoginCommand" />
+		<mapping class="com.iit.univdhaka.iis.domain.Permission" />
+		<mapping class="com.iit.univdhaka.iis.domain.Plan" />
+		<mapping class="com.iit.univdhaka.iis.domain.Program" />
+		<mapping class="com.iit.univdhaka.iis.domain.Role" />
+		<mapping class="com.iit.univdhaka.iis.domain.States" />
+		<mapping class="com.iit.univdhaka.iis.domain.Student" />
+		<mapping class="com.iit.univdhaka.iis.domain.StudentAdvisor" />
+		<mapping class="com.iit.univdhaka.iis.domain.StudentContact" />
+		<mapping class="com.iit.univdhaka.iis.domain.StudentCourse" />
+		<mapping class="com.iit.univdhaka.iis.domain.StudentDetails" />
+		<mapping class="com.iit.univdhaka.iis.domain.StudentProgramDetails" />
+		<mapping class="com.iit.univdhaka.iis.domain.StudentTerm" />
+		<mapping class="com.iit.univdhaka.iis.domain.UserLevel" />
+	</session-factory>
+</hibernate-configuration>
