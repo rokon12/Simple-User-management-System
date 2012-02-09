@@ -96,6 +96,7 @@ div#nav ul li {
 
 div#nav a,div#nav a:link,div#nav a:active,div#nav a:visited {
 	background: transparent;
+	
 }
 
 div#nav a:hover {

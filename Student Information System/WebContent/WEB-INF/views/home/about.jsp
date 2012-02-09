@@ -2,4 +2,4 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 
-<h1>About</h1>
+<h2>About</h2>

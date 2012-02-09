@@ -26,5 +26,11 @@
 		<put-attribute name="title" value="About" />
 		<put-attribute name="body" value="/WEB-INF/views/user/create.jsp" />
 	</definition>
+	
+	<definition name="student/create" extends="standard-layout">
+		<put-attribute name="title" value="Create" />
+		<put-attribute name="body" value="/WEB-INF/views/student/create.jsp" />
+	</definition>
+	
 
 </tiles-definitions>

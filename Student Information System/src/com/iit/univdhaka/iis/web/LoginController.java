@@ -9,16 +9,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.iit.univdhaka.iis.domain.LoginCommand;
 import com.iit.univdhaka.iis.service.UserService;
-
-
-
 
 @Controller
 @RequestMapping("/login/*")
@@ -31,13 +30,15 @@ public class LoginController {
 	private UserService userService;
 
 	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public void showLoginForm(LoginCommand loginCommand) {
+	public void showLoginForm(ModelMap model) {
 		log.debug("entered login form");
+		LoginCommand loginCommand = new LoginCommand();
+		model.put("login", loginCommand);
 	}
 
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String proccessLogin(LoginCommand command, BindingResult result,
-			HttpSession session) {
+	public String proccessLogin(@ModelAttribute("login") LoginCommand command,
+			BindingResult result, HttpSession session) {
 		log.debug("entered processFormSubmission, userName={}, password={}",
 				command.getUserName(), command.getPassword());
 
