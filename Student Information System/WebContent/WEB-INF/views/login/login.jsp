@@ -6,7 +6,7 @@
 <br />
 
 
-<form:form modelAttribute="loginCommand" action="login" method="post">
+<form:form modelAttribute="login" action="login" method="post">
 	<fieldset>
 		<legend>Login</legend>
 
